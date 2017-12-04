@@ -1,0 +1,67 @@
+th,td {
+	font-family: Tahoma;
+	font-size: 13px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #eff8fd;
+}
+.menu { 
+ border-bottom: 1px solid #fff;  
+ text-decoration: none; 
+ background: #336699; 
+ color: #fff;  
+ padding: 0.5em; 
+} 
+.hover { 
+ background: #000; 
+} 
+.clicked {
+ background: #000; 
+}
+.err {
+	color: red;
+}
+.success {
+	font-weight: bold;
+	color: green;
+	padding: 0.2em;
+}
+.bangdiem {
+	border:1px solid lightgray;
+	border-collapse: collapse;
+}
+.diemkem {
+	background: pink;
+	opacity: 0.7
+}
+.chuacodiem {
+	background: #FFFF80;	
+}
+div.scroll {
+	height: 200px;
+	width: 615;
+	overflow: auto;
+	border: 1px solid #666;
+	background-color: white;
+	padding: 8px;
+	text-align: justify;
+}
+
+div.horizal {
+	height: 200px;
+	width: 650;
+	overflow: auto;
+	background-color: #eff8fd;
+
+	padding: 8px;
+	text-align: justify;
+}
+
+.single { 
+	margin-bottom: 0; 
+	margin-top: 0;  
+}
