@@ -1,7 +1,5 @@
-<?php /*
-include "config/config.php";
-spl_autoload_register("loadClass");
-$db= new Db();*/
+<?php 
+if(!isset($_SESSION)) session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,10 +13,10 @@ $db= new Db();*/
 <body>
 
   <div class="wrap">
-		<div class="avatar">
+		<div class="avatar" style="margin-bottom:10px">
      	<img src="images/55200419-HINHGIAODUC_HUONGPMJ.jpg">
         </div>
-        <form action="trangchu.php" method="post">
+        <form action="ktlogin.php" method="post">
 		<input type="text" name="u" placeholder="Username" required>
 		<div class="bar">
 			<i></i>

@@ -1,6 +1,16 @@
+<?php
+if(!isset($_SESSION)) session_start();
+?>
 <!doctype html>
 <html>
 <head>
+<script type="text/javascript">
+			 	function back1()
+				{
+					history.back(-1);
+					
+				}
+			 </script>
 <link rel="stylesheet" href="css/style.css">
 
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -18,6 +28,7 @@
 
 <body>
 <?php
+
 $o = new PDO("mysql:host=localhost; dbname=qlda","root","");
 $o->query("set names 'utf8'");
 ?>
@@ -27,46 +38,54 @@ $o->query("set names 'utf8'");
         <h5>Đăng ký Đồ án</h5>
       </div>
       <div class='panel-body'>
-        <form class='form-horizontal' role='form'>
+        <form class='form-horizontal' role='form' method="post" action="formdangky.php">
           <div class='form-group'>
             <label class='control-label col-md-2 col-md-offset-2' for='id_accomodation'>Đồ án</label>
             <div class='col-md-2'>
-              <select class='form-control' id='id_accomodation' style="width:300px">
+              <select class='form-control' name="selectdoan" id='selectdoan' style="width:300px" onChange="myFunction()">
               <?php
+			 	
 			  	$sql ="select * from doan";
 				$o2=$o->query($sql);
 				$data = $o2->fetchAll(PDO::FETCH_ASSOC);
+				$masl; 
 				foreach ($data as $v){
 					echo"<option value='".$v['mda']."'>".$v['tenda']."</option>";
 				}
-				
 				?>
-              
+              <script>
+			  function myFunction() {
+					
+					 var selectmenu = document.getElementById("selectdoan");
+					var chosenOption = selectmenu.options[selectmenu.selectedIndex].value;
+			
+			}
+              </script>
+			  
+			  
                
               </select>
             </div>
           </div>
           
+          
+         <div style="margin-bottom:10px">
+         <label for="inputlg" style="padding-left:308px;padding-right:20px">Học lại</label>
+		 <input id="hoclai"  name="hoclai" type="radio" value="1" required >Có &nbsp;&nbsp;&nbsp;&nbsp;
+		 <input id="hoclai" name="hoclai" type="radio" value="0">Không
+         </div>
+          
+          
           <div class='form-group'>
-            <label class='control-label col-md-2 col-md-offset-2' for='id_checkin'>Ngày bắt đầu</label>
+            <label class='control-label col-md-2 col-md-offset-2' for='id_checkin'>Ngày đăng ký</label>
             <div class='col-md-8'>
               <div class='col-md-3'>
                 <div class='form-group internal input-group'>
-                  <input class='form-control datepicker' id='id_checkin'>
-                  <span class='input-group-addon'>
-                    <i class='glyphicon glyphicon-calendar'></i>
-                  </span>
+                  <input type="text" name="ngaydangky" disabled value="<?php echo date("d/m/Y") ;  ?>">
+                 
                 </div>
               </div>
-              <label class='control-label col-md-2' for='id_checkout'>Ngày kết thúc</label>
-              <div class='col-md-3'>
-                <div class='form-group internal input-group'>
-                  <input class='form-control datepicker' id='id_checkout'>
-                  <span class='input-group-addon'>
-                    <i class='glyphicon glyphicon-calendar'></i>
-                  </span>
-                </div>
-              </div>
+             
             </div>
           </div>
           
@@ -74,7 +93,7 @@ $o->query("set names 'utf8'");
             <label class='control-label col-md-2 col-md-offset-2' for='id_pets'>Làm nhóm</label>
             <div class='col-md-8'>
               <div class='make-switch' data-off-label='NO' data-on-label='YES' id='id_pets_switch'>
-                <input id='id_pets' type='checkbox' onChange="change()" value='chk_hydro'>
+                <input id='id_pets' name="id_pets" type='checkbox' onChange="change()" value='chk_hydro'>
               </div>
             </div>
           </div>
@@ -90,7 +109,7 @@ $o->query("set names 'utf8'");
             <div class='col-md-6'>
               <div class='form-group'>
                 <div class='col-md-11'>
-                  <input class='form-control' id='id_email' placeholder='Mã số sinh viên' type='text'>
+                  <input class='form-control' id='id_email' name="svnhom" placeholder='Mã số sinh viên' type='text'>
                 </div>
               </div>
             </div>
@@ -135,11 +154,14 @@ $o->query("set names 'utf8'");
             
          <script>
 		 	function change(){
+				
 				var checkbox = document.getElementById("id_pets").checked
 				var lamnhom = document.getElementById("ln")
 				if (checkbox){
+					
 					lamnhom.style.height = "296px";
 				}else{
+					
 					lamnhom.style.height = "0";
 				}
 			}
@@ -150,11 +172,12 @@ $o->query("set names 'utf8'");
          
           <div class='form-group'>
             <div class='col-md-offset-4 col-md-3'>
-              <button class='btn-lg btn-primary' type='submit'>Đăng ký</button>
+              <button class='btn-lg btn-primary' type='submit' name="submit">Đăng ký</button>
             </div>
            
             <div class='col-md-3'>
-              <button class='btn-lg btn-danger' style='float:right' type='submit'>Cancel</button>
+              <button class='btn-lg btn-danger' type='submit' name="cancel" onClick="back1();" >Cancel</button>
+             
             </div>
           </div>
         </form>
